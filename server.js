@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 // تقديم الملفات الثابتة الموجودة داخل مجلد public
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // إنشاء endpoint لمعالجة الطلبات الحساسة (مثال: التحقق من رمز التفعيل)
 app.post('/process', (req, res) => {
