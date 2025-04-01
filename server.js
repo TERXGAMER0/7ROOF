@@ -4,10 +4,10 @@ const app = express();
 
 // إعداد محرك القوالب
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'public'));
+app.set('views', path.join(__dirname, 'views'));
 
 // تقديم الملفات الثابتة من مجلد 'public'
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // التعامل مع الطلبات إلى الصفحة الرئيسية
 app.get('/', (req, res) => {
