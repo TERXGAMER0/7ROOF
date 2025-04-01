@@ -99,28 +99,30 @@
     <div class="container" id="grid"></div>
 
     <script>
-      // ========== التحقق من الرمز السري بواسطة الخادم ==========
-      document.getElementById("secret-submit").addEventListener("click", function () {
-        var code = document.getElementById("secret-code").value.trim();
-        // إرسال طلب POST إلى الخادم للتحقق من الرمز
-        fetch('/process', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ code: code })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            // إذا كان الرمز صحيح، أخفي واجهة التحقق
+      // ========== التحقق من الرمز السري ==========
+      document
+        .getElementById("secret-submit")
+        .addEventListener("click", function () {
+          var code = document.getElementById("secret-code").value.trim();
+          // مصفوفة الرموز المسموح بها؛ يمكن إضافة المزيد من الرموز هنا
+          var allowedCodes = [
+            "IAGSJ81628JAVW",
+            "KABWJWHYSV",
+            "KAHWUWHVSKV",
+            "LANNSIDHSHHS",
+            "kiV6VN0ktqdrLmN",
+            "Ct1g4TlYdqG233n",
+            "1TPDOC2GBXQ3Q",
+            "11111",
+            "ECO6233Y63Y19",
+            "X8PILDJ1SDD95",
+          ];
+          if (allowedCodes.includes(code)) {
             document.getElementById("secret-overlay").style.display = "none";
           } else {
-            // إذا كان الرمز خاطئ، اعرض رسالة الخطأ
             document.getElementById("error-message").style.display = "block";
           }
         });
-      });
 
       class HexGame {
         constructor() {
@@ -172,7 +174,7 @@
             ],
           ];
 
-          // ========== نظام التحكم في الأسطر والشكل ========== 
+          // ========== نظام التحكم في الأسطر والشكل ==========
           // مصفوفة الإزاحات الخاصة بكل صف لضبط الموقع بدقة (تُستخدم لتعديل موضع كل صف)
           this.rowOffsets = [
             { x: -98, y: 4 }, // أوفست السطر 1
